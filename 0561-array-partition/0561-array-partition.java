@@ -1,4 +1,4 @@
-class Solution {
+class Main {
     public int arrayPairSum(int[] nums) {
         Arrays.sort(nums);
         int max=0;
