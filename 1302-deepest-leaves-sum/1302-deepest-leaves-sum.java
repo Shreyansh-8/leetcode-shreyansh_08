@@ -14,24 +14,23 @@
  * }
  */
 class Solution {
-    public static void traverse(TreeNode root, int level,List<List<Integer>> list){
+    public static void traverse(TreeNode root, int level,List<Integer> list){
         if(root==null) return ;
         if(list.size()==level){
-            list.add(new ArrayList<>());
+            list.add(root.val);
         }
-            list.get(level).add(root.val);
+        else{
+            list.set(level,list.get(level)+root.val);
+        }
+            
         traverse(root.left,level+1,list);
         traverse(root.right,level+1,list);
     }
     public int deepestLeavesSum(TreeNode root) {
-        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
         if(root==null) return root.val;
         traverse(root,0,list);
-            int ans=0;
             int s = list.size()-1;
-            for(int i=0;i<list.get(s).size();i++){
-                ans = ans + list.get(s).get(i);
-            }
-        return ans;
+        return list.get(s);
     }        
 }
