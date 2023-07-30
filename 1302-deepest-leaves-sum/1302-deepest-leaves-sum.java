@@ -20,9 +20,9 @@ class Solution {
             list.add(root.val);
         }
         else{
+            
             list.set(level,list.get(level)+root.val);
         }
-            
         traverse(root.left,level+1,list);
         traverse(root.right,level+1,list);
     }
@@ -30,6 +30,7 @@ class Solution {
         List<Integer> list = new ArrayList<>();
         if(root==null) return root.val;
         traverse(root,0,list);
+            int ans=0;
             int s = list.size()-1;
         return list.get(s);
     }        
