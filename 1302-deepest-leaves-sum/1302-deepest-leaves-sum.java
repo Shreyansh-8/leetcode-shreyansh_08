@@ -14,25 +14,19 @@
  * }
  */
 class Solution {
+    public static void traverse(TreeNode root, int level,List<List<Integer>> list){
+        if(root==null) return ;
+        if(list.size()==level){
+            list.add(new ArrayList<>());
+        }
+            list.get(level).add(root.val);
+        traverse(root.left,level+1,list);
+        traverse(root.right,level+1,list);
+    }
     public int deepestLeavesSum(TreeNode root) {
-        Queue<TreeNode> q = new LinkedList<>();
         List<List<Integer>> list = new ArrayList<>();
-        q.offer(root);
-        if(q.peek()==null) return 0;
-        while(!q.isEmpty()){
-            List<Integer> l = new ArrayList<>();
-            int len = q.size();
-            for(int i=0;i<len;i++){
-                if(q.peek().left!=null){
-                    q.offer(q.peek().left);
-                }
-                if(q.peek().right!=null){
-                    q.offer(q.peek().right);
-                }
-                l.add(q.poll().val);
-            }
-            list.add(l); 
-        }    
+        if(root==null) return root.val;
+        traverse(root,0,list);
             int ans=0;
             int s = list.size()-1;
             for(int i=0;i<list.get(s).size();i++){
